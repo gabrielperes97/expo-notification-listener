@@ -1,0 +1,55 @@
+import { useEffect, useState } from 'react';
+import * as ExpoNotificationListener from 'expo-notification-listener';
+import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { ReceiveNotificationEvent } from 'expo-notification-listener';
+
+export default function App() {
+
+  const [notifications, setNotifications] = useState<ReceiveNotificationEvent[]>([]);
+
+  const addNotification = (notification: any) => {
+    console.log('Notification received:', notification);
+    setNotifications((prevNotifications) => [...prevNotifications, notification]);
+  };
+
+  useEffect(() => {
+    const subscription = ExpoNotificationListener.addNotificationListener((notification) => {
+      addNotification(notification)
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, [addNotification]);
+
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Notification listener permission granted: {ExpoNotificationListener.isNotificationListenerPermissionGranted() ? 'Yes' : 'No'}</Text>
+      <Button
+        title="Request Permission"
+        onPress={() => ExpoNotificationListener.requestPermission()}
+        disabled={ExpoNotificationListener.isNotificationListenerPermissionGranted()}
+      />
+      <SafeAreaView style={{ flex: 1, width: '100%' }}>
+        <ScrollView contentContainerStyle={{ padding: 20 }}>
+          {notifications.map((notification, index) => (
+        <View
+          key={index}
+          style={{
+            marginBottom: 10,
+            padding: 10,
+            borderWidth: 1,
+            borderColor: '#ccc',
+            borderRadius: 5,
+          }}
+        >
+          <Text style={{ fontWeight: 'bold' }}>Title: {notification.title || 'N/A'}</Text>
+          <Text>Text: {notification.text || 'N/A'}</Text>
+          <Text>Package: {notification.packageName || 'N/A'}</Text>
+        </View>
+          ))}
+        </ScrollView>
+      </SafeAreaView>
+    </View>
+  );
+}

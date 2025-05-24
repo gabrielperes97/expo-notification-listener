@@ -1,0 +1,25 @@
+# Expo Notification Listener
+
+This project is designed to handle android global notifications (via NotificationListenerService) in an Expo-based React Native application. It provides functionality to listen for and manage incoming notifications effectively.
+
+## Features
+
+- Listen for global notifications in real-time.
+- Handle foreground, background, and terminated app states.
+- Customizable notification handling logic.
+- Check and request necessary permissions.
+
+
+## Disclaimer
+
+This library is in the early stages of development and may contain bugs or incomplete features. Use it at your own risk, and feel free to contribute by reporting issues or submitting pull requests.
+
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Expo Documentation](https://docs.expo.dev/)
+- [React Native Documentation](https://reactnative.dev/docs/getting-started)
