@@ -18,8 +18,9 @@ class NotificationListener : NotificationListenerService() {
     private val context
         get() = requireNotNull(this.applicationContext)
 
-    private val storage = NotificationStorage(context)
-
+    private val storage by lazy {
+        NotificationStorage(context)
+    }
     private val seenNotificationHashes = ConcurrentHashMap<String, Long>()
     private val deduplicationWindowMillis = 2 * 60 * 1000L // 2 minutes
 
