@@ -1,12 +1,5 @@
 import { EventSubscription } from 'expo-modules-core';
-import ExpoNotificationListenerModule from './ExpoNotificationListenerModule';
-
-export type ReceiveNotificationEvent = {
-    title: string;
-    text: string;
-    packageName: string;
-    bigText: string;
-}
+import ExpoNotificationListenerModule, { ReceiveNotificationEvent } from './ExpoNotificationListenerModule';
 
 export function addNotificationListener(
     listener: (notification: ReceiveNotificationEvent) => void): EventSubscription {
