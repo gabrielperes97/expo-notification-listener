@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import * as ExpoNotificationListener from 'expo-notification-listener';
 import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
-import { ReceiveNotificationEvent } from 'expo-notification-listener';
 
 export default function App() {
 
-  const [notifications, setNotifications] = useState<ReceiveNotificationEvent[]>([]);
+  const [notifications, setNotifications] = useState<ExpoNotificationListener.ReceiveNotificationEvent[]>([]);
 
   const addNotification = (notification: any) => {
     console.log('Notification received:', notification);

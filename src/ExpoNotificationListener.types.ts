@@ -1,5 +1,4 @@
-import { NativeModule, requireNativeModule } from 'expo';
-
+import { NativeModule } from 'expo';
 
 export type ReceiveNotificationEvent = {
     title: string;
@@ -12,9 +11,7 @@ export type NotificationListenerModuleEvents = {
     onReceiveNotification(notification: ReceiveNotificationEvent): void;
 }
 
-declare class ExpoNotificationListenerModule extends NativeModule<NotificationListenerModuleEvents> {
+export declare class ExpoNotificationListenerModule extends NativeModule<NotificationListenerModuleEvents> {
   isNotificationListenerPermissionGranted(): boolean;
   requestPermission();
 }
-
-export default requireNativeModule<ExpoNotificationListenerModule>('ExpoNotificationListener');

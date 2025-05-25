@@ -1,5 +1,6 @@
 import { EventSubscription } from 'expo-modules-core';
-import ExpoNotificationListenerModule, { ReceiveNotificationEvent } from './ExpoNotificationListenerModule';
+import ExpoNotificationListenerModule from './ExpoNotificationListener';
+import { ReceiveNotificationEvent } from './ExpoNotificationListener.types';
 
 export function addNotificationListener(
     listener: (notification: ReceiveNotificationEvent) => void): EventSubscription {
@@ -13,3 +14,11 @@ export function isNotificationListenerPermissionGranted(): boolean {
 export function requestPermission() {
     return ExpoNotificationListenerModule.requestPermission();
 }
+
+export * from './ExpoNotificationListener.types';
+
+export const ExpoNotificationListener = {
+    addNotificationListener,
+    isNotificationListenerPermissionGranted,
+    requestPermission,
+};
