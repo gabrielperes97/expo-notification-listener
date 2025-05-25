@@ -1,4 +1,7 @@
-import { requireNativeModule } from 'expo';
-import { ExpoNotificationListenerModule } from './ExpoNotificationListener.types';
+import { requireNativeModule } from "expo";
 
-export default requireNativeModule<ExpoNotificationListenerModule>('ExpoNotificationListener');
+import { ExpoNotificationListenerModule } from "./ExpoNotificationListener.types";
+
+export default requireNativeModule<ExpoNotificationListenerModule>(
+  "ExpoNotificationListener",
+);
