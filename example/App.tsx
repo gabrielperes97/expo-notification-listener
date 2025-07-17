@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as ExpoNotificationListener from 'expo-notification-listener';
-import { Button, SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Button, Platform, SafeAreaView, ScrollView, Text, View } from 'react-native';
 
 export default function App() {
 
@@ -24,11 +24,15 @@ export default function App() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Notification listener permission granted: {ExpoNotificationListener.isNotificationListenerPermissionGranted() ? 'Yes' : 'No'}</Text>
-      <Button
-        title="Request Permission"
-        onPress={() => ExpoNotificationListener.requestPermission()}
-        disabled={ExpoNotificationListener.isNotificationListenerPermissionGranted()}
-      />
+      {Platform.OS === 'android' ? (
+        <Button
+          title="Request Permission"
+          onPress={() => ExpoNotificationListener.requestPermission()}
+          disabled={ExpoNotificationListener.isNotificationListenerPermissionGranted()}
+        />
+      ) : (
+        <Text>No support to this platform</Text>
+      )}
       <SafeAreaView style={{ flex: 1, width: '100%' }}>
         <ScrollView contentContainerStyle={{ padding: 20 }}>
           {notifications.map((notification, index) => (
